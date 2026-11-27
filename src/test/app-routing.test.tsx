@@ -14,4 +14,39 @@ describe("App routing", () => {
 
     expect(matches.at(-1)?.routeId).not.toBe(rootRouteId);
   });
+
+  it("matches all main navigation routes", () => {
+    const router = createRouter({ routeTree, context: { queryClient: new QueryClient() } });
+    for (const path of ["/", "/countries", "/cybercrimes", "/compare", "/status", "/research"]) {
+      const matches = router.matchRoutes(path);
+      expect(matches.at(-1)?.routeId, path).not.toBe(rootRouteId);
+    }
+  });
+
+  it("matches every country, law, and cybercrime detail route", () => {
+    const router = createRouter({ routeTree, context: { queryClient: new QueryClient() } });
+    for (const path of [
+      "/countries/india",
+      "/countries/usa",
+      "/countries/uk",
+      "/countries/australia",
+      "/countries/singapore",
+      "/cybercrimes/hacking",
+      "/cybercrimes/identity-theft",
+      "/cybercrimes/online-fraud",
+      "/cybercrimes/ransomware",
+      "/cybercrimes/cyberstalking",
+      "/cybercrimes/data-breaches",
+      "/cybercrimes/ai-deepfakes",
+      "/cybercrimes/ai-impersonation",
+      "/laws/in-it-act-2000",
+      "/laws/us-cfaa",
+      "/laws/uk-cma-1990",
+      "/laws/au-privacy-1988",
+      "/laws/sg-cma-1993",
+    ]) {
+      const matches = router.matchRoutes(path);
+      expect(matches.at(-1)?.routeId, path).not.toBe(rootRouteId);
+    }
+  });
 });

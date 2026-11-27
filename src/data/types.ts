@@ -1,7 +1,6 @@
 /**
- * Domain types for CyberLaw Atlas. Field names mirror the planned database
- * tables (see docs/supabase-schema.sql) so the sample data can be swapped for
- * live rows without touching the UI.
+ * Domain types for CyberLaw Atlas. Records are stored in bundled JSON/TypeScript
+ * data files and redeployed with the frontend.
  */
 
 export type LawStatus =
@@ -12,8 +11,8 @@ export type LawStatus =
   | "partially_in_force"
   | "repealed";
 
-/** "sample" = entered from public sources, not yet reviewed by a legal professional. */
-export type VerificationState = "sample" | "verified";
+/** "verified" = source metadata has been checked; "pending" = official details still need confirmation. */
+export type VerificationState = "verified" | "pending";
 
 export type CountryId = "india" | "usa" | "uk" | "australia" | "singapore";
 
@@ -57,9 +56,15 @@ export interface Law {
   countryId: CountryId;
   title: string;
   year: number;
+  description: string;
   status: LawStatus;
   /** Plain-language note on commencement or status nuances. */
   statusNote?: string;
+  enactmentDate: string;
+  commencementDate?: string;
+  amendments: string[];
+  lastVerified: string;
+  verificationNotes: string;
   /** Most recent known milestone (enactment, commencement, introduction). */
   milestone?: { date: string; label: string };
   sources: SourceLink[];

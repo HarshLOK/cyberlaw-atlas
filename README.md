@@ -109,7 +109,7 @@ Repealed.
 
 IMPORTANT:
 
-Use clearly labelled sample data where verified legal data is not yet available.
+Use clearly labelled pending-verification data where official details are not yet confirmed.
 
 Never invent legal provisions or punishments.
 
@@ -123,7 +123,7 @@ Ensure every button and navigation link works.
 
 Make mobile responsiveness a priority.
 
-First build the complete frontend with working navigation and sample data. Do not attempt to integrate external APIs yet.
+The website now uses bundled, source-backed legal records. It does not require a database or external API.
 
 
 
@@ -154,6 +154,18 @@ Continue developing this project in the [Lovable editor](https://lovable.dev/pro
 - **Ship faster**: describe what you want to build and Lovable handles the code.
 - **Stay in sync**: every change made in Lovable is committed straight to this repository.
 - **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
+
+## Updating legal data
+
+Legal records are maintained in `src/data/laws.ts`, `src/data/provisions.ts`, and `src/data/countries.ts`.
+No database or scheduled job is required.
+
+1. Verify the change at the relevant official portal: India Code, Congress/U.S. Code,
+   legislation.gov.uk, the Australian Federal Register, or Singapore Statutes Online.
+2. Update the record with an official source URL, enactment date, commencement date,
+   status, amendments, `lastVerified` date and verification notes.
+3. Set `verification` to `pending` until uncertain dates or commencement details are confirmed.
+4. Run `npm test` and `npm run build`, then redeploy the frontend.
 
 ## Development
 

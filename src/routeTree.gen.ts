@@ -10,33 +10,139 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CompareRouteImport } from './routes/compare'
+import { Route as CountriesRouteImport } from './routes/countries'
+import { Route as CybercrimesRouteImport } from './routes/cybercrimes'
+import { Route as ResearchRouteImport } from './routes/research'
+import { Route as StatusRouteImport } from './routes/status'
+import { Route as CountriesCountryIdRouteImport } from './routes/countries.$countryId'
+import { Route as CybercrimesCategoryIdRouteImport } from './routes/cybercrimes.$categoryId'
+import { Route as LawsLawIdRouteImport } from './routes/laws.$lawId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CompareRoute = CompareRouteImport.update({
+  id: '/compare',
+  path: '/compare',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CountriesRoute = CountriesRouteImport.update({
+  id: '/countries',
+  path: '/countries',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CybercrimesRoute = CybercrimesRouteImport.update({
+  id: '/cybercrimes',
+  path: '/cybercrimes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResearchRoute = ResearchRouteImport.update({
+  id: '/research',
+  path: '/research',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StatusRoute = StatusRouteImport.update({
+  id: '/status',
+  path: '/status',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CountriesCountryIdRoute = CountriesCountryIdRouteImport.update({
+  id: '/$countryId',
+  path: '/$countryId',
+  getParentRoute: () => CountriesRoute,
+} as any)
+const CybercrimesCategoryIdRoute = CybercrimesCategoryIdRouteImport.update({
+  id: '/$categoryId',
+  path: '/$categoryId',
+  getParentRoute: () => CybercrimesRoute,
+} as any)
+const LawsLawIdRoute = LawsLawIdRouteImport.update({
+  id: '/laws/$lawId',
+  path: '/laws/$lawId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/compare': typeof CompareRoute
+  '/countries': typeof CountriesRouteWithChildren
+  '/cybercrimes': typeof CybercrimesRouteWithChildren
+  '/research': typeof ResearchRoute
+  '/status': typeof StatusRoute
+  '/countries/$countryId': typeof CountriesCountryIdRoute
+  '/cybercrimes/$categoryId': typeof CybercrimesCategoryIdRoute
+  '/laws/$lawId': typeof LawsLawIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/compare': typeof CompareRoute
+  '/countries': typeof CountriesRouteWithChildren
+  '/cybercrimes': typeof CybercrimesRouteWithChildren
+  '/research': typeof ResearchRoute
+  '/status': typeof StatusRoute
+  '/countries/$countryId': typeof CountriesCountryIdRoute
+  '/cybercrimes/$categoryId': typeof CybercrimesCategoryIdRoute
+  '/laws/$lawId': typeof LawsLawIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/compare': typeof CompareRoute
+  '/countries': typeof CountriesRouteWithChildren
+  '/cybercrimes': typeof CybercrimesRouteWithChildren
+  '/research': typeof ResearchRoute
+  '/status': typeof StatusRoute
+  '/countries/$countryId': typeof CountriesCountryIdRoute
+  '/cybercrimes/$categoryId': typeof CybercrimesCategoryIdRoute
+  '/laws/$lawId': typeof LawsLawIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/compare'
+    | '/countries'
+    | '/cybercrimes'
+    | '/research'
+    | '/status'
+    | '/countries/$countryId'
+    | '/cybercrimes/$categoryId'
+    | '/laws/$lawId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/compare'
+    | '/countries'
+    | '/cybercrimes'
+    | '/research'
+    | '/status'
+    | '/countries/$countryId'
+    | '/cybercrimes/$categoryId'
+    | '/laws/$lawId'
+  id:
+    | '__root__'
+    | '/'
+    | '/compare'
+    | '/countries'
+    | '/cybercrimes'
+    | '/research'
+    | '/status'
+    | '/countries/$countryId'
+    | '/cybercrimes/$categoryId'
+    | '/laws/$lawId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CompareRoute: typeof CompareRoute
+  CountriesRoute: typeof CountriesRouteWithChildren
+  CybercrimesRoute: typeof CybercrimesRouteWithChildren
+  ResearchRoute: typeof ResearchRoute
+  StatusRoute: typeof StatusRoute
+  LawsLawIdRoute: typeof LawsLawIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +154,97 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/compare': {
+      id: '/compare'
+      path: '/compare'
+      fullPath: '/compare'
+      preLoaderRoute: typeof CompareRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/countries': {
+      id: '/countries'
+      path: '/countries'
+      fullPath: '/countries'
+      preLoaderRoute: typeof CountriesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cybercrimes': {
+      id: '/cybercrimes'
+      path: '/cybercrimes'
+      fullPath: '/cybercrimes'
+      preLoaderRoute: typeof CybercrimesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/research': {
+      id: '/research'
+      path: '/research'
+      fullPath: '/research'
+      preLoaderRoute: typeof ResearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/status': {
+      id: '/status'
+      path: '/status'
+      fullPath: '/status'
+      preLoaderRoute: typeof StatusRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/countries/$countryId': {
+      id: '/countries/$countryId'
+      path: '/$countryId'
+      fullPath: '/countries/$countryId'
+      preLoaderRoute: typeof CountriesCountryIdRouteImport
+      parentRoute: typeof CountriesRoute
+    }
+    '/cybercrimes/$categoryId': {
+      id: '/cybercrimes/$categoryId'
+      path: '/$categoryId'
+      fullPath: '/cybercrimes/$categoryId'
+      preLoaderRoute: typeof CybercrimesCategoryIdRouteImport
+      parentRoute: typeof CybercrimesRoute
+    }
+    '/laws/$lawId': {
+      id: '/laws/$lawId'
+      path: '/laws/$lawId'
+      fullPath: '/laws/$lawId'
+      preLoaderRoute: typeof LawsLawIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
+interface CountriesRouteChildren {
+  CountriesCountryIdRoute: typeof CountriesCountryIdRoute
+}
+
+const CountriesRouteChildren: CountriesRouteChildren = {
+  CountriesCountryIdRoute: CountriesCountryIdRoute,
+}
+
+const CountriesRouteWithChildren = CountriesRoute._addFileChildren(
+  CountriesRouteChildren,
+)
+
+interface CybercrimesRouteChildren {
+  CybercrimesCategoryIdRoute: typeof CybercrimesCategoryIdRoute
+}
+
+const CybercrimesRouteChildren: CybercrimesRouteChildren = {
+  CybercrimesCategoryIdRoute: CybercrimesCategoryIdRoute,
+}
+
+const CybercrimesRouteWithChildren = CybercrimesRoute._addFileChildren(
+  CybercrimesRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CompareRoute: CompareRoute,
+  CountriesRoute: CountriesRouteWithChildren,
+  CybercrimesRoute: CybercrimesRouteWithChildren,
+  ResearchRoute: ResearchRoute,
+  StatusRoute: StatusRoute,
+  LawsLawIdRoute: LawsLawIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

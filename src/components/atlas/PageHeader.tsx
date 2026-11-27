@@ -19,7 +19,9 @@ export function PageHeader({
       {eyebrow && <p className="label-mono mb-3 text-primary-glow">{eyebrow}</p>}
       <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
         <div className="min-w-0 max-w-3xl">
-          <h1 className="text-3xl font-semibold text-foreground sm:text-4xl lg:text-5xl">{title}</h1>
+          <h1 className="break-words text-3xl font-semibold text-foreground sm:text-4xl lg:text-5xl">
+            {title}
+          </h1>
           {description && (
             <p className="mt-3 text-base text-muted-foreground sm:text-lg">{description}</p>
           )}
@@ -40,7 +42,7 @@ export function SectionHeading({
   action?: ReactNode;
 }) {
   return (
-    <div className="mb-5 grid grid-cols-[minmax(0,1fr)_auto] items-end gap-4">
+    <div className="mb-5 flex flex-col items-start gap-3 sm:grid sm:grid-cols-[minmax(0,1fr)_auto] sm:items-end sm:gap-4">
       <div className="min-w-0">
         <h2 className="text-xl font-semibold text-foreground sm:text-2xl">{title}</h2>
         {description && <p className="mt-1 text-sm text-muted-foreground">{description}</p>}

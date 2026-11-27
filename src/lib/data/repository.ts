@@ -1,7 +1,7 @@
 /**
  * Data access layer. Every read goes through these async functions so the
- * bundled sample dataset can later be replaced by Lovable Cloud queries
- * (tables described in docs/supabase-schema.sql) without changing pages.
+ * bundled, source-backed dataset can be updated in TypeScript/JSON files
+ * without changing pages.
  */
 import { CATEGORIES, CATEGORY_BY_ID } from "@/data/categories";
 import { COUNTRIES, COUNTRY_BY_ID } from "@/data/countries";
@@ -28,6 +28,10 @@ export async function listCountries(): Promise<Country[]> {
 
 export async function getCountry(id: string): Promise<Country | null> {
   return isCountryId(id) ? COUNTRY_BY_ID[id] : null;
+}
+
+export async function getLaw(id: string): Promise<Law | null> {
+  return LAW_BY_ID[id] ?? null;
 }
 
 export async function listCategories(): Promise<CrimeCategory[]> {
